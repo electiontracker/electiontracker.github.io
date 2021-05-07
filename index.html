@@ -76,12 +76,22 @@
 
 </script>
 <script>
-      var json_file =
+    window.addEventListener('load', function () {
+      var json_file = {}
 
-      $.getJSON("json/followers_latest.json", function(json) {
-        json_file = json
+      $.getJSON("https://raw.githubusercontent.com/electiontracker/electiontracker.github.io/main/json/followers_latest.json", function(json_file) {
+        // json_file = {
+        //  'twitter' : {
+        //    'labels' : ['mai','juin','juillet','aout','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],
+        //    'e.macron' : [2,15,56,45,54,16,8,41,87,78,54,65,54,52,56,41,43,29,38,36,34,35,36,35,43],
+        //    'm.le_pen' : [10,11,15,54,16,8,41,87,78,54,65,51,55,47,68,63,30,33,39,37,39,31,30,37],
+        //  }
+        // }
+        //
+        // json = {}
 
         console.log(json_file)
+        // console.log(json)
       var data = {
           labels: json_file["twitter"]["labels"],
           datasets: [
@@ -109,8 +119,9 @@
         config
       );
 
+    // })
     })
-// })
+})
   </script>
 
 </script>
