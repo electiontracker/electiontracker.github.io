@@ -34,7 +34,7 @@
   </head>
   <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 shadow p-3 mb-5">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Election tracker</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,13 +57,13 @@
   </div>
 </nav>
 
-<main class="container">
-  <div class="bg-light p-5 rounded">
+<main class="shadow container p-3 mb-5 bg-body rounded">
+  <!-- <div class="bg-light p-5 rounded"> -->
     <h1>Twitter</h1>
     <p class="lead">
     <canvas id="twitter_abo" height="450" width="800"></canvas>
     </p>
-  </div>
+  <!-- </div> -->
 </main>
 
 
@@ -76,17 +76,11 @@
 
 </script>
 <script>
-      var json_file = {
-        "twitter" : {
-          "labels" : ["mai","juin","juillet","aout","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e"],
-          "e.macron" : [2,15,56,45,54,16,8,41,87,78,54,65,54,52,56,41,43,29,38,36,34,35,36,35,43],
-          "m.le_pen" : [10,11,15,54,16,8,41,87,78,54,65,51,55,47,68,63,30,33,39,37,39,31,30,37],
-        }
-      }
+      // var json_file =
 
-      // $.getJSON("followers_latest.json", function(json) {
-      //   json_file = json
-      // })
+      $.getJSON("json/followers_latest.json", function(json) {
+        json_file = json
+      })
 
       var data = {
           labels: json_file["twitter"]["labels"],
