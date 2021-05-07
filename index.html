@@ -70,32 +70,38 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js">
+
+</script>
 
 </script>
 <script>
+      var json_file = {
+        "twitter" : {
+          "labels" : ["mai","juin","juillet","aout","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e","e"],
+          "e.macron" : [2,15,56,45,54,16,8,41,87,78,54,65,54,52,56,41,43,29,38,36,34,35,36,35,43],
+          "m.le_pen" : [10,11,15,54,16,8,41,87,78,54,65,51,55,47,68,63,30,33,39,37,39,31,30,37],
+        }
+      }
+
+      // $.getJSON("followers_latest.json", function(json) {
+      //   json_file = json
+      // })
 
       var data = {
-          labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          labels: json_file["twitter"]["labels"],
           datasets: [
               {
-                  label: "Prime and Fibonacci",
-                  fillColor: "rgba(220,220,220,0.2)",
-                  strokeColor: "rgba(220,220,220,1)",
-                  pointColor: "rgba(220,220,220,1)",
-                  pointStrokeColor: "#fff",
-                  pointHighlightFill: "#fff",
-                  pointHighlightStroke: "rgba(220,220,220,1)",
-                  data: [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+                  label: "Twitter - E.MACRON",
+                  data: json_file["twitter"]["e.macron"],
+                  borderColor : "#1DA1F2",
+                  backgroundColor : "#1DA1F2"
               },
               {
-                  label: "My Second dataset",
-                  fillColor: "rgba(151,187,205,0.2)",
-                  strokeColor: "rgba(151,187,205,1)",
-                  pointColor: "rgba(151,187,205,1)",
-                  pointStrokeColor: "#fff",
-                  pointHighlightFill: "#fff",
-                  pointHighlightStroke: "rgba(151,187,205,1)",
-                  data: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+                  label: "Twitter - M.LE PEN",
+                  data: json_file["twitter"]["m.le_pen"],
+                  borderColor : "#1DA1F2",
+                  backgroundColor : "#1DA1F2"
               }
           ]
       };
