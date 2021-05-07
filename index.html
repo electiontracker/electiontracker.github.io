@@ -76,14 +76,12 @@
 
 </script>
 <script>
-       var json_file = {}
+      var json_file =
 
       $.getJSON("json/followers_latest.json", function(json) {
         json_file = json
-      })
-      
-      console.log(json_file)
-  
+      }).done(function() {
+
       var data = {
           labels: json_file["twitter"]["labels"],
           datasets: [
@@ -110,6 +108,8 @@
         document.getElementById('twitter_abo'),
         config
       );
+
+    })
 // })
   </script>
 
