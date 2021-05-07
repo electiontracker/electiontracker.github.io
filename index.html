@@ -81,7 +81,7 @@
       $.getJSON("json/followers_latest.json", function(json) {
         json_file = json
 
-
+        console.log(json_file)
       var data = {
           labels: json_file["twitter"]["labels"],
           datasets: [
