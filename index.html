@@ -67,52 +67,102 @@
 </main>
 
 
-
+<!-- <script src="path/to/chartjs/dist/chart.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js">
-
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="path/to/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+<script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@0.7.7"></script>
 </script>
 
 </script>
 <script>
-    window.addEventListener('load', function () {
-      var json_file = {}
+    // window.addEventListener('load', function () {
+      // var json_file = {}
 
-      $.getJSON("https://raw.githubusercontent.com/electiontracker/electiontracker.github.io/main/json/followers_latest.json", function(json_file) {
-        // json_file = {
-        //  'twitter' : {
-        //    'labels' : ['mai','juin','juillet','aout','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e','e'],
-        //    'e.macron' : [2,15,56,45,54,16,8,41,87,78,54,65,54,52,56,41,43,29,38,36,34,35,36,35,43],
-        //    'm.le_pen' : [10,11,15,54,16,8,41,87,78,54,65,51,55,47,68,63,30,33,39,37,39,31,30,37],
-        //  }
-        // }
-        //
-        // json = {}
+      function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
 
-        console.log(json_file)
-        // console.log(json)
+      $.getJSON("https://electiontracker.github.io/json/followers_latest.json", function(json_file) {
+        
+        let colors = []
+        for (let index = 0; index < 5; index++) {
+          colors.push(getRandomColor());
+          
+        }
+      let events_arr = new Array(json_file["twitter"]["X.Bertrand"].length);
+      events_arr[50] = 8000
+      events_arr[75] = 9000
+      events_arr[100] = 9000
       var data = {
           labels: json_file["twitter"]["labels"],
           datasets: [
               {
                   label: "Twitter - E.MACRON",
-                  data: json_file["twitter"]["e.macron"],
-                  borderColor : "#1DA1F2",
-                  backgroundColor : "#1DA1F2"
+                  data: json_file["twitter"]["E.Macron"],
+                  borderColor : colors[0],
+                  pointStyle : 'line',
+                  // backgroundColor : colors[0]
               },
               {
                   label: "Twitter - M.LE PEN",
-                  data: json_file["twitter"]["m.le_pen"],
-                  borderColor : "#1DA1F2",
-                  backgroundColor : "#1DA1F2"
+                  data: json_file["twitter"]["M.Le Pen"],
+                  borderColor : colors[1],
+                  pointStyle : 'line',
+                  // backgroundColor : colors[1]
+              },
+              {
+                  label: "Twitter - J-L.Mélenchon",
+                  data: json_file["twitter"]["J-L.Mélenchon"],
+                  borderColor : colors[2],
+                  pointStyle : 'line',
+                  // backgroundColor : colors[2]
+              },
+              {
+                  label: "Twitter - X.Bertrand",
+                  data: json_file["twitter"]["X.Bertrand"],
+                  borderColor : colors[3],
+                  pointStyle : 'line',
+                  // backgroundColor : colors[3]
+              },
+              {
+                  label: "Events",
+                  data: events_arr,
+                  borderColor : colors[4],
+                  pointStyle : 'circle',
+                  radius : 10,
+                  backgroundColor : colors[4]
               }
+
           ]
+          
       };
+      console.log(data)
       config = {
         type: 'line',
         data,
-        options: {}
+        options: {
+          plugins: {
+            zoom: {
+                pan: {
+                    enabled: true,
+                    mode: 'xy'
+                },
+                zoom: {
+                    enabled: true,
+                    mode: 'xy',
+                }
+            }
+        }
+          }
       };
       var myChart = new Chart(
         document.getElementById('twitter_abo'),
@@ -120,8 +170,8 @@
       );
 
     // })
-    })
-})
+    // })
+  })
   </script>
 
 </script>
